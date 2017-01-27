@@ -178,7 +178,6 @@ module ParallelTests
             raise "Too little runtime info" if allowed_missing < 0
             [test, time]
           end
-          tests.sort! {|a,b| b[1] <=> a[1]}
 
           if options[:verbose]
             puts "Runtime found for #{tests.count(&:last)} of #{tests.size} tests"
@@ -189,6 +188,8 @@ module ParallelTests
           average = (known.any? ? known.map!(&:last).inject(:+) / known.size : 1)
           unknown_runtime = options[:unknown_runtime] || average
           unknown.each { |set| set[1] = unknown_runtime }
+
+          tests.sort_by!(&:last).reverse
         end
 
         def runtimes(tests, options)
