@@ -176,6 +176,7 @@ module ParallelTests
             raise "Too little runtime info" if allowed_missing < 0
             [test, time]
           end
+          tests.sort! {|a,b| b[1] <=> a[1]}
 
           if options[:verbose]
             puts "Runtime found for #{tests.count(&:last)} of #{tests.size} tests"
