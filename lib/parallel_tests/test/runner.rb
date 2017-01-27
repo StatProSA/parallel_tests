@@ -197,7 +197,7 @@ module ParallelTests
           lines.each_with_object({}) do |line, times|
             test, _, time = line.rpartition(':')
             next unless test and time
-            times[test] = time.to_f if tests.include?(test)
+            times[test] = time if tests.include?(test)
           end
         end
 
