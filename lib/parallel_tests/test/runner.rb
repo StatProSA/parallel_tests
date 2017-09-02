@@ -76,6 +76,8 @@ module ParallelTests
           )
           cmd = "nice #{cmd}" if options[:nice]
           cmd = "#{cmd} 2>&1" if options[:combine_stderr]
+          cmd = ParallelTests.with_ruby_binary(cmd)
+
           puts cmd if options[:verbose]
 
           execute_command_and_capture_output(env, cmd, options[:serialize_stdout])
@@ -194,7 +196,7 @@ module ParallelTests
           log = options[:runtime_log] || runtime_log
           lines = File.read(log).split("\n")
           lines.each_with_object({}) do |line, times|
-            test, time = line.split(":", 2)
+            test, _, time = line.rpartition(':')
             next unless test and time
             times[test] = time.to_f if tests.include?(test)
           end

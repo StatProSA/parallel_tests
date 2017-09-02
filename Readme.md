@@ -111,6 +111,8 @@ Rspec: Add to your `.rspec_parallel` (or `.rspec`) :
     --format progress
     --format ParallelTests::RSpec::RuntimeLogger --out tmp/parallel_runtime_rspec.log
 
+To use a custom logfile location (default: `tmp/parallel_runtime_spec.log`), use the CLI: `parallel_test spec -t rspec --runtime-log my.log`
+
 ### Test::Unit & Minitest 4/5
 
 Add to your `test_helper.rb`:
@@ -360,7 +362,7 @@ inspired by [pivotal labs](https://blog.pivotal.io/labs/labs/parallelize-your-rs
  - [Doc Ritezel](https://github.com/ohrite)
  - [Alexandre Wilhelm](https://github.com/dogild)
  - [Jerry](https://github.com/boblington)
-
+ - [Aleksei Gusev](https://github.com/hron)
 
 [Michael Grosser](http://grosser.it)<br/>
 michael@grosser.it<br/>
