@@ -85,6 +85,12 @@ namespace :parallel do
     ParallelTests::Tasks.run_in_parallel(ParallelTests::Tasks.suppress_schema_load_output(command), args)
   end
 
+  desc "Reset test databases via db:reset --> parallel:setup[num_cpus]"
+  task :setup, :count do |_,args|
+    command = "rake db:environment:set db:reset RAILS_ENV=#{ParallelTests::Tasks.rails_env}"
+    ParallelTests::Tasks.run_in_parallel(ParallelTests::Tasks.suppress_schema_load_output(command), args)
+  end
+
   desc "Create test databases via db:create --> parallel:create[num_cpus]"
   task :create, :count do |_,args|
     ParallelTests::Tasks.run_in_parallel("rake db:environment:set db:create RAILS_ENV=#{ParallelTests::Tasks.rails_env}", args)
