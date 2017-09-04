@@ -86,7 +86,7 @@ namespace :parallel do
   end
 
   desc "Reset test databases via db:reset --> parallel:setup[num_cpus]"
-  task :setup, :count do |_,args|
+  task :reset, :count do |_,args|
     command = "rake db:environment:set db:reset RAILS_ENV=#{ParallelTests::Tasks.rails_env}"
     ParallelTests::Tasks.run_in_parallel(ParallelTests::Tasks.suppress_schema_load_output(command), args)
   end
